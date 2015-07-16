@@ -34,8 +34,47 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 def score(dice):
-    # You need to write this method
-    pass
+    def dieCount(die):
+      return len(filter(lambda d: d == die, dice))
+  
+    def singlesAndTriples(count):
+      return (count % 3, count / 3)
+      
+    faces = [0,1,2,3,4,5,6] #adding zero to line up die values with indicies
+    counts = [ singlesAndTriples(dieCount(d)) for d in faces ]
+    pointMultipliers = [ (0,0), \
+                         (100, 1000), \
+                         (0, 200), \
+                         (0, 300), \
+                         (0, 400), \
+                         (50, 500), \
+                         (0, 600) \
+                       ]
+    
+    return counts[1][0] * pointMultipliers[1][0] + counts[1][1] * pointMultipliers[1][1] + \
+           counts[2][0] * pointMultipliers[2][0] + counts[2][1] * pointMultipliers[2][1] + \
+           counts[3][0] * pointMultipliers[3][0] + counts[3][1] * pointMultipliers[3][1] + \
+           counts[4][0] * pointMultipliers[4][0] + counts[4][1] * pointMultipliers[4][1] + \
+           counts[5][0] * pointMultipliers[5][0] + counts[5][1] * pointMultipliers[5][1] + \
+           counts[6][0] * pointMultipliers[6][0] + counts[6][1] * pointMultipliers[6][1]
+    
+    # counts = [ singlesAndTriples(dieCount(d)) for d in faces ]
+  
+    # def countFives():
+    #   count = len(filter(lambda x: x == 5, dice))
+    #   return singlesAndTriples(count)
+      
+    # def countOnes():
+    #   count = len(filter(lambda x: x == 1, dice))
+    #   return singlesAndTriples(count)
+    
+    # fives = countFives()
+    # ones = countOnes()
+    
+    # return counts[5][0] * 500 \
+    #     + counts[5][1] * 50 \
+    #     + counts[1][0] * 1000 \
+    #     + counts[1][1] * 100 \
 
 
 class AboutScoringProject(Koan):
