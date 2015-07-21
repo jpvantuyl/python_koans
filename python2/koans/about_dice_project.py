@@ -15,9 +15,8 @@ class DiceSet(object):
         return self._values
 
     def roll(self, n):
-        # Needs implementing!
+        self._values = [ random.randint(1, 6) for x in range(0, n) ]
         # Tip: random.randint(min, max) can be used to generate random numbers
-        pass
 
 
 class AboutDiceProject(Koan):
@@ -60,6 +59,10 @@ class AboutDiceProject(Koan):
         # If the rolls are random, then it is possible (although not
         # likely) that two consecutive rolls are equal.  What would be a
         # better way to test this?
+        
+        # Allowing the RNG to be injected via DI would enable us
+        # to create a mock RNG that was deterministic for use in
+        # testing.
 
     def test_you_can_roll_different_numbers_of_dice(self):
         dice = DiceSet()
